@@ -3,36 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrimsonFlame — Archive Build V3 (Ring Loader & SSO)</title>
-    <link rel="icon" type="image/png" href="https://i.ibb.co/TBkJR2Jn/unnamed-removebg-preview.png">
+    <title>CrimsonFlame — Games & Interactive Experiences</title>
+    <link rel="stylesheet" href="style.css?v=6">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #0A0A0E; color: #FFF; font-family: 'Inter', sans-serif; min-height: 100vh; }
-        .version-ribbon {
-            background: linear-gradient(135deg, #FF2A00, #FF0055);
-            color: #FFF; text-align: center; font-weight: 800; font-size: 0.85rem; padding: 8px 16px;
-            letter-spacing: 0.5px; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center;
-        }
-        .version-ribbon a { color: #FFF; text-decoration: underline; font-weight: 700; }
-        .hero { text-align: center; padding: 80px 20px; max-width: 800px; margin: 0 auto; }
-        .hero h1 { font-family: 'Outfit', sans-serif; font-size: 3.5rem; font-weight: 900; background: linear-gradient(135deg, #FFF, #FF0055); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { color: #A0A0B0; font-size: 1.1rem; line-height: 1.6; margin-top: 16px; }
-        .badge { display: inline-block; padding: 6px 16px; border-radius: 20px; background: rgba(255,0,85,0.15); border: 1px solid rgba(255,0,85,0.4); color: #FF0055; font-weight: 700; font-size: 0.82rem; margin-bottom: 16px; }
-    </style>
 </head>
 <body>
-    <div class="version-ribbon">
-        <span>🔥 ARCHIVED BUILD V3 • RING LOADER & DEFERRED SSO</span>
-        <a href="../">← Return to Vault</a>
+    <div class="version-top-bar" style="background: linear-gradient(135deg, #FF2A00, #FF0055); color: #FFF; text-align: center; padding: 8px 16px; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 99999;">
+        <span>🔥 ARCHIVE V3 • CUSTOM RING LOADER & DEFERRED SSO BUILD</span>
+        <a href="../../" style="color: #FFF; text-decoration: underline;">← Return to Vault</a>
     </div>
 
+    <!-- Global Custom Crimson Loading Animation -->
+    <div id="page-loader">
+        <img src="/assets/loading.gif" alt="Loading..." class="loader-video">
+        <div class="loader-title">CrimsonFlame</div>
+    </div>
+    <script>
+        function hidePageLoader() {
+            var l = document.getElementById('page-loader');
+            if (l) {
+                l.classList.add('fade-out');
+                setTimeout(function() { l.style.display = 'none'; }, 400);
+            }
+        }
+        window.addEventListener('DOMContentLoaded', hidePageLoader);
+        window.addEventListener('load', hidePageLoader);
+        setTimeout(hidePageLoader, 1500);
+    </script>
+
+    <!-- Ambient Background -->
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Floating Pill Nav -->
+    <nav class="pill-nav">
+        <a href="index.html" class="pill-brand">
+            <img src="https://i.ibb.co/TBkJR2Jn/unnamed-removebg-preview.png" alt="CF" class="pill-brand-logo">
+            CrimsonFlame
+        </a>
+        <a href="/projects" class="pill-link">Projects</a>
+        <a href="/dashboard" class="pill-link">Dashboard</a>
+        <a href="https://discord.gg/tNK8z9gYGQ" class="pill-cta" target="_blank">
+            <svg width="16" height="12" viewBox="0 0 24 18" fill="currentColor"><path d="M20.317 1.492a19.7 19.7 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.7 19.7 0 0 0 3.677 1.492a.07.07 0 0 0-.032.027C.533 6.093-.32 10.555.099 14.961a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03z"/></svg>
+            Discord
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
     <section class="hero">
-        <span class="badge">V3.0.0 Snapshot</span>
-        <h1>CrimsonFlame V3</h1>
-        <p>Custom yellow-orange transparent ring loading animation with deferred Firebase SSO authorization card popups across clean sub-routes.</p>
+        <div class="hero-left">
+            <!-- Animated Orb (Flame Planet) -->
+            <div class="orb-container">
+                <div class="orb"></div>
+                <div class="orb-ring"></div>
+                <div class="orb-ring orb-ring-2"></div>
+            </div>
+            <!-- Floating Badges -->
+            <div class="floating-badge badge-1">
+                <span class="badge-icon">🎓</span>
+                <span class="badge-text">Campus VR</span>
+            </div>
+            <div class="floating-badge badge-2">
+                <span class="badge-icon">🎮</span>
+                <span class="badge-text">Crimson Protocol</span>
+            </div>
+            <div class="floating-badge badge-3">
+                <span class="badge-icon">🕹️</span>
+                <span class="badge-text">Multiplayer VR</span>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="hero-tag">🔥 Game & VR Studio</div>
+            <h1 class="hero-title">Crimson<span class="gradient-word">Flame</span></h1>
+            <p class="hero-sub">Creating innovative, immersive Social VR metaverses, multiplayer games, and cutting-edge interactive experiences.</p>
+            
+            <div class="hero-actions">
+                <a href="projects" class="btn-explore">Explore Projects →</a>
+                <a href="https://discord.gg/tNK8z9gYGQ" class="btn-outline" target="_blank">Discord</a>
+            </div>
+
+            <div class="follow-row">
+                <span class="follow-label">FOLLOW US</span>
+                <div class="social-icons">
+                    <a href="https://discord.gg/tNK8z9gYGQ" class="social-icon" target="_blank">
+                        <svg width="18" height="14" viewBox="0 0 24 18" fill="currentColor"><path d="M20.317 1.492a19.7 19.7 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.7 19.7 0 0 0 3.677 1.492a.07.07 0 0 0-.032.027C.533 6.093-.32 10.555.099 14.961a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03z"/></svg>
+                    </a>
+                    <a href="https://github.com/CrimsonFlame-Official" class="social-icon" target="_blank">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://youtube.com/@crimsonflameofficial" class="social-icon" target="_blank">
+                        <svg width="18" height="14" viewBox="0 0 24 18" fill="currentColor"><path d="M23.498 4.186a3.016 3.016 0 0 0-2.122-2.136C19.505 1.545 12 1.545 12 1.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 4.186C0 6.07 0 10 0 10s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 13.93 24 10 24 10s0-3.93-.502-5.814zM9.545 13.568V6.432L15.818 10l-6.273 3.568z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <!-- Section Cards -->
+    <section class="sections" id="about">
+        <div class="section-card">
+            <div class="section-label">About</div>
+            <h2>What is CrimsonFlame?</h2>
+            <p>CrimsonFlame is an independent game studio building immersive multiplayer experiences. From custom VR locomotion systems to real-time networked worlds, we push the limits of what's possible in Unity and beyond.</p>
+        </div>
+
+        <div class="section-card" id="projects">
+            <div class="section-label">Flagship</div>
+            <h2>Crimson Protocol</h2>
+            <p>Our flagship multiplayer VR game built in Unity — featuring custom locomotion, spatial audio, physics-based interactions, and dedicated servers on Meta Quest.</p>
+        </div>
+
+        <div class="section-card">
+            <div class="section-label">R&D</div>
+            <h2>VR Locomotion Lab</h2>
+            <p>Experimental spatial vector math, physics interactions, and next-gen locomotion systems. Building the movement tech that makes VR feel natural.</p>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <p>© 2026 <strong>CrimsonFlame</strong>. All rights reserved.</p>
+    </footer>
+
+    <script>
+    // ── Floating Particles ──
+    (function() {
+        const container = document.getElementById('particles');
+        const count = 35;
+        for (let i = 0; i < count; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 3 + 1;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.top = Math.random() * 100 + '%';
+            p.style.animationDuration = (Math.random() * 12 + 8) + 's';
+            p.style.animationDelay = (Math.random() * 8) + 's';
+            p.style.opacity = Math.random() * 0.5 + 0.15;
+            container.appendChild(p);
+        }
+    })();
+
+    // ── Parallax on mouse move ──
+    document.addEventListener('mousemove', function(e) {
+        const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2;
+        
+        const orb = document.querySelector('.orb-container');
+        if (orb) {
+            orb.style.transform = 'translate(' + (x * 15) + 'px, ' + (y * 15) + 'px)';
+        }
+
+        const badges = document.querySelectorAll('.floating-badge');
+        badges.forEach(function(b, i) {
+            const factor = (i + 1) * 8;
+            b.style.transform = 'translate(' + (x * factor) + 'px, ' + (y * factor) + 'px)';
+        });
+    });
+
+    </script>
+
+    <!-- OAuth SSO Page (hidden unless ?app_name= is in URL) -->
+    <div id="page-oauth" class="page-content" style="display: none; position: fixed; inset: 0; z-index: 9999; background: var(--bg); display: none; justify-content: center; align-items: center;">
+        <div style="max-width: 420px; width: 90%; background: rgba(22, 12, 16, 0.95); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 36px; text-align: center;">
+            <img src="https://i.ibb.co/TBkJR2Jn/unnamed-removebg-preview.png" style="width: 56px; height: 56px; margin-bottom: 14px; border-radius: 10px;">
+            <h2 id="oauth-title" style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 6px;">Connect to App</h2>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 24px;">This app is requesting access to your CrimsonFlame account.</p>
+
+            <!-- Not logged in prompt -->
+            <div id="oauth-login-prompt" style="margin-bottom: 20px;">
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 14px;">Please sign in first to link your account.</p>
+                <a href="dashboard.html" style="display: inline-block; padding: 10px 28px; background: var(--crimson); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 600;">Sign In on Dashboard</a>
+            </div>
+
+            <!-- Logged in user info -->
+            <div id="oauth-user-info" style="display: none; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); text-align: left; margin-bottom: 16px;">
+                    <img id="oauth-pfp" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover;">
+                    <div>
+                        <div id="oauth-name" style="font-weight: 700; color: #fff; font-size: 1rem;"></div>
+                        <div id="oauth-email" style="font-size: 0.82rem; color: var(--text-secondary);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Approve / Cancel buttons -->
+            <div id="oauth-actions" style="display: none; gap: 10px; justify-content: center;">
+                <button onclick="cancelOAuth()" style="padding: 10px 24px; background: rgba(255,255,255,0.08); color: var(--text-secondary); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; cursor: pointer; font-weight: 600;">Cancel</button>
+                <button onclick="approveOAuth()" style="padding: 10px 24px; background: var(--crimson); color: #fff; border: none; border-radius: 10px; cursor: pointer; font-weight: 700;">✓ Approve & Link</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+
 </body>
 </html>

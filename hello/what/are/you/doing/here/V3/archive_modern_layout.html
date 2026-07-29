@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrimsonFlame | Version Vault & Build Showcase</title>
+    <link rel="icon" type="image/png" href="/assets/loading.gif">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        body {
+            background-color: #0A0A0E;
+            color: #F0F0F8;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+
+        .vault-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 28px;
+        }
+
+        /* Glassmorphism Panel */
+        .glass-panel {
+            background: rgba(18, 18, 24, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 24px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .panel-header-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 12px;
+        }
+
+        /* Profile Left Column */
+        .profile-card-top {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar-wrap {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 16px auto;
+        }
+
+        .profile-avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 107, 0, 0.5);
+            box-shadow: 0 0 25px rgba(255, 107, 0, 0.3);
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 230, 153, 0.12);
+            border: 1px solid rgba(0, 230, 153, 0.3);
+            color: #00E699;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00E699;
+            box-shadow: 0 0 8px #00E699;
+        }
+
+        .studio-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-top: 10px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #A0A0B0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .studio-sub {
+            color: #FF6B00;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        .bio-box {
+            background: rgba(10, 10, 14, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 0.88rem;
+            color: #B0B0C0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            max-height: 240px;
+            overflow-y: auto;
+        }
+
+        .social-buttons-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-social {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-social:hover {
+            background: rgba(255, 107, 0, 0.15);
+            border-color: rgba(255, 107, 0, 0.4);
+            color: #FF6B00;
+        }
+
+        /* Right Column Showcase Place Card */
+        .showcase-featured-card {
+            background: rgba(10, 10, 14, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .showcase-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .version-badge {
+            background: linear-gradient(135deg, #FF6B00, #FF2A00);
+            color: #FFFFFF;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .btn-launch-large {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #FF6B00 0%, #FF2A00 100%);
+            color: #FFFFFF;
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.35);
+            transition: all 0.25s ease;
+        }
+
+        .btn-launch-large:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 107, 0, 0.5);
+        }
+
+        .showcase-thumb-box {
+            width: 100%;
+            height: 280px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .showcase-thumb-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .showcase-thumb-box:hover .showcase-thumb-img {
+            transform: scale(1.03);
+        }
+
+        .showcase-desc-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            padding: 14px 18px;
+            color: #D0D0E0;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        /* Versions Selector Grid */
+        .version-list-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+
+        .version-item-card {
+            background: rgba(18, 18, 24, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .version-item-card:hover, .version-item-card.active {
+            border-color: rgba(255, 107, 0, 0.5);
+            background: rgba(255, 107, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .version-item-card.active {
+            box-shadow: 0 0 15px rgba(255, 107, 0, 0.2);
+        }
+
+        .version-item-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+        }
+
+        .version-item-sub {
+            font-size: 0.78rem;
+            color: #A0A0B0;
+        }
+
+        /* Contributors Grid */
+        .contributors-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .contributor-chip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 8px 14px;
+            border-radius: 30px;
+        }
+
+        .contributor-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .contributor-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #FFFFFF;
+        }
+
+        @media (max-width: 900px) {
+            .vault-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <img src="/assets/loading.gif" alt="Loading..." class="loader-video">
+        <div class="loader-title">CRIMSONFLAME VAULT</div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="site-header">
+        <nav class="pill-navbar">
+            <a href="/" class="nav-brand">
+                <img src="/assets/loading.gif" alt="Logo" class="nav-logo">
+                <span class="nav-title">CrimsonFlame</span>
+            </a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/projects">Projects</a>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/archive" class="active">Vault & Archive</a>
+                <a href="/test">Staging Test</a>
+                <a href="/support">Support</a>
+            </div>
+            <div class="nav-right">
+                <a href="/link" class="btn-sso-link">🔒 SSO Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="vault-container">
+        <!-- LEFT COLUMN: Profile & Bio Panel -->
+        <aside class="glass-panel">
+            <div class="panel-header-title">
+                <span>Studio Profile</span>
+                <span class="status-pill"><span class="status-dot"></span> Online</span>
+            </div>
+
+            <div class="profile-card-top">
+                <div class="profile-avatar-wrap">
+                    <img src="https://i.ibb.co/TBkJR2Jn/unnamed-removebg-preview.png" alt="CrimsonFlame Avatar" class="profile-avatar-img">
+                </div>
+                <h2 class="studio-title">CrimsonFlame</h2>
+                <div class="studio-sub">Game & VR Metaverse Studio</div>
+            </div>
+
+            <div class="bio-box">
+🔥 <strong>CrimsonFlame Studio Archives</strong><br><br>
+Building immersive VR locomotion systems, real-time multiplayer metaverses, and cutting-edge interactive engines.<br><br>
+• <strong>v1.0.0</strong>: Original classic studio layout<br>
+• <strong>v1.2.0</strong>: HorizonNOVA Neural AI Engine<br>
+• <strong>v1.5.0</strong>: Custom transparent ring animation & SSO<br>
+• <strong>Staging</strong>: Experimental sandbox testing ground
+            </div>
+
+            <div class="social-buttons-row">
+                <a href="https://discord.gg/tNK8z9gYGQ" target="_blank" class="btn-social">💬 Discord</a>
+                <a href="https://github.com/CrimsonFlame-Official" target="_blank" class="btn-social">🐙 GitHub</a>
+            </div>
+        </aside>
+
+        <!-- RIGHT COLUMN: Active Versions & Showcase Panel -->
+        <section class="glass-panel">
+            <div class="panel-header-title">
+                <span>🏛️ Active Versions & Build Showcase</span>
+                <span style="font-size: 0.85rem; color: #A0A0B0; font-weight: normal;" id="build-count-label">4 Builds Available</span>
+            </div>
+
+            <!-- FEATURED BUILD CARD -->
+            <div class="showcase-featured-card">
+                <div class="showcase-header">
+                    <div>
+                        <span class="version-badge" id="featured-badge">v1.0.0 • Classic</span>
+                        <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.6rem; color: #FFF; margin-top: 8px;" id="featured-title">CrimsonFlame Classic Build</h2>
+                    </div>
+                    <a href="/archive/v1/" id="featured-launch-btn" class="btn-launch-large">🚀 Launch Build →</a>
+                </div>
+
+                <div class="showcase-thumb-box">
+                    <img src="/bg.png" alt="Build Thumbnail" class="showcase-thumb-img" id="featured-thumb">
+                </div>
+
+                <div class="showcase-desc-box" id="featured-desc">
+                    The original multi-page layout featuring early Quest VR project showcases, classic UI themes, and initial developer portal integrations.
+                </div>
+            </div>
+
+            <!-- VERSIONS SELECTOR LIST -->
+            <h3 style="font-size: 1rem; color: #FFFFFF; margin-bottom: 12px; font-weight: 700;">Select Historical Version:</h3>
+            <div class="version-list-grid">
+                <div class="version-item-card active" onclick="selectVaultVersion(0)">
+                    <div class="version-item-title">v1.0.0 Classic</div>
+                    <div class="version-item-sub">Initial Studio Build</div>
+                </div>
+                <div class="version-item-card" onclick="selectVaultVersion(1)">
+                    <div class="version-item-title">v1.2.0 Neural AI</div>
+                    <div class="version-item-sub">HorizonNOVA Engine</div>
+                </div>
+                <div class="version-item-card" onclick="selectVaultVersion(2)">
+                    <div class="version-item-title">v1.5.0 Ring & SSO</div>
+                    <div class="version-item-sub">Loading Anim & SSO Auth</div>
+                </div>
+                <div class="version-item-card" onclick="selectVaultVersion(3)">
+                    <div class="version-item-title">Staging Sandbox</div>
+                    <div class="version-item-sub">Experimental Testing</div>
+                </div>
+            </div>
+
+            <!-- CONTRIBUTORS SECTION AT BOTTOM -->
+            <div style="margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px;">
+                <h4 style="font-size: 0.88rem; color: #A0A0B0; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">Studio Contributors & Developers</h4>
+                <div class="contributors-row">
+                    <div class="contributor-chip">
+                        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Crimson" class="contributor-avatar">
+                        <span class="contributor-name">CrimsonOnVR</span>
+                    </div>
+                    <div class="contributor-chip">
+                        <img src="/assets/loading.gif" alt="NOVA" class="contributor-avatar">
+                        <span class="contributor-name">HorizonNOVA AI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        var vaultVersions = [
+            {
+                title: "CrimsonFlame Classic Build",
+                badge: "v1.0.0 • Classic",
+                url: "/archive/v1/",
+                thumb: "/bg.png",
+                desc: "The original multi-page layout featuring early Quest VR project showcases, classic UI themes, and initial developer portal integrations."
+            },
+            {
+                title: "HorizonNOVA Multi-Turn AI Engine",
+                badge: "v1.2.0 • Neural AI",
+                url: "http://localhost:9090",
+                thumb: "/llm-from-scratch/nova_logo.png",
+                desc: "Multi-turn conversational transformer engine featuring official spinning NOVA logo, ByteTokenizer, and pure autoregressive text generation."
+            },
+            {
+                title: "Custom Ring Loader & Defer SSO",
+                badge: "v1.5.0 • Ring & SSO",
+                url: "/link",
+                thumb: "/assets/loading.gif",
+                desc: "Custom yellow-orange transparent ring loading animation with deferred Firebase SSO authorization card popups."
+            },
+            {
+                title: "Live Staging Sandbox Environment",
+                badge: "Staging • Experimental",
+                url: "/test",
+                thumb: "/bg.png",
+                desc: "Live sandbox environment used to preview, benchmark, and stress-test new UI components, locomotion protocols, and animations."
+            }
+        ];
+
+        function selectVaultVersion(idx) {
+            var v = vaultVersions[idx];
+
+            document.getElementById('featured-title').innerText = v.title;
+            document.getElementById('featured-badge').innerText = v.badge;
+            document.getElementById('featured-launch-btn').href = v.url;
+            document.getElementById('featured-thumb').src = v.thumb;
+            document.getElementById('featured-desc').innerText = v.desc;
+
+            var cards = document.querySelectorAll('.version-item-card');
+            cards.forEach(function(card, i) {
+                if (i === idx) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+        }
+
+        window.addEventListener('load', function() {
+            var loader = document.getElementById('page-loader');
+            if (loader) {
+                loader.classList.add('fade-out');
+                setTimeout(function() { loader.style.display = 'none'; }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

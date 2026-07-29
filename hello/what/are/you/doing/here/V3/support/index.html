@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Center | CrimsonFlame</title>
+    <link rel="stylesheet" href="/style.css?v=7">
+</head>
+<body>
+
+    <!-- Global Custom Crimson Loading Animation -->
+    <div id="page-loader">
+        <img src="/assets/loading.gif" alt="Loading..." class="loader-video">
+        <div class="loader-title">CrimsonFlame</div>
+    </div>
+    <script>
+        function hidePageLoader() {
+            var l = document.getElementById('page-loader');
+            if (l) {
+                l.classList.add('fade-out');
+                setTimeout(function() { l.style.display = 'none'; }, 400);
+            }
+        }
+        window.addEventListener('DOMContentLoaded', hidePageLoader);
+        window.addEventListener('load', hidePageLoader);
+        setTimeout(hidePageLoader, 1500);
+    </script>
+
+    <!-- Ambient Glow Backgrounds -->
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- Floating Pill Navigation -->
+    <div class="pill-nav">
+        <a href="/index.html" class="pill-brand">
+            <img src="/bg.png" alt="Logo" class="pill-brand-logo">
+            CrimsonFlame <span style="color:var(--text-secondary); font-size:0.8rem; margin-left: 4px;">| Support</span>
+        </a>
+        <a href="/index.html" class="pill-link">Hub</a>
+        <a href="/projects" class="pill-link">Projects</a>
+        <a href="/dashboard" class="pill-link">Dashboard</a>
+        <a href="/index.html" class="pill-cta">Back to Main</a>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="dash-main">
+        
+        <!-- Access Locked View -->
+        <div id="support-locked" class="dash-card" style="text-align: center; display: none;">
+            <h2>CrimsonFlame Access Required</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Support requires an active Grid account.</p>
+            <button type="button" class="btn-primary" onclick="window.location.href='/dashboard'">Go to Login</button>
+        </div>
+
+        <!-- Support Page View -->
+        <div id="page-support" style="display: block; width: 100%; max-width: 600px;">
+            <div id="ticket-system" class="dash-card">
+                
+                <!-- Ticket List View -->
+                <div id="list-view">
+                    <h2>Grid Support Center</h2>
+                    <form id="ticket-form" onsubmit="submitTicket(event)">
+                        <label for="ticket-subject">Subject</label>
+                        <input type="text" id="ticket-subject" placeholder="What do you need help with?" required>
+                        
+                        <label for="ticket-msg">Description</label>
+                        <textarea id="ticket-msg" placeholder="Describe the issue in detail... Support will reply via thread." rows="4" style="width: 100%; background: rgba(12, 6, 8, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 11px 14px; color: var(--text); font-family: var(--font-body); font-size: 0.92rem; outline: none; margin-bottom: 16px;" required></textarea>
+                        
+                        <button type="submit" class="btn-primary">Create Ticket</button>
+                    </form>
+                    
+                    <hr class="divider">
+                    <div id="ticket-list" style="color: var(--text-secondary); font-size: 0.9rem;">Syncing tickets...</div>
+                </div>
+
+                <!-- Ticket Thread View -->
+                <div id="thread-view" style="display: none;">
+                    <button type="button" class="btn-secondary" onclick="closeThreadView()" style="margin-bottom: 16px;">← Back to List</button>
+                    <h2 id="active-subject">Ticket Subject</h2>
+                    
+                    <div id="ticket-chat-box" style="height: 260px; background: rgba(12, 6, 8, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 14px; overflow-y: auto; margin-bottom: 16px;"></div>
+                    
+                    <form id="ticket-chat-form" onsubmit="submitTicketChat(event)" style="display: flex; gap: 10px;">
+                        <input type="text" id="ticket-chat-input" placeholder="Type a reply..." style="flex: 1;" required>
+                        <button type="submit" class="btn-primary" style="width: auto; margin-top: 0; padding: 0 20px;">Reply</button>
+                    </form>
+
+                    <div id="admin-close-area" style="display: none; margin-top: 20px;">
+                        <button type="button" class="btn-danger" style="width: 100%;" onclick="closeActiveTicket()">Close Ticket</button>
+                    </div>
+                    <div id="resolution-box" style="display: none; margin-top: 20px; border-left: 4px solid var(--crimson); padding-left: 10px;">
+                        <strong>Ticket Closed:</strong> <span id="resolution-text"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Custom Prompt Modal -->
+    <div id="custom-prompt" class="custom-modal-overlay">
+        <div class="custom-modal-box">
+            <h3 id="custom-prompt-title" class="custom-modal-title">Prompt</h3>
+            <p id="custom-prompt-desc" class="custom-modal-text"></p>
+            <input type="text" id="custom-prompt-input" class="custom-modal-input" autocomplete="off">
+            <div class="custom-modal-buttons">
+                <button type="button" id="custom-prompt-cancel" class="custom-modal-btn cancel">Cancel</button>
+                <button type="button" id="custom-prompt-confirm" class="custom-modal-btn confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Alert Modal -->
+    <div id="custom-alert" class="custom-modal-overlay">
+        <div class="custom-modal-box">
+            <h3 class="custom-modal-title">CrimsonFlame Alert</h3>
+            <p id="custom-alert-message" class="custom-modal-text"></p>
+            <button type="button" id="custom-alert-ok" class="custom-modal-btn confirm" style="width: 50%;">OK</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="cf-footer">
+        <p>© CrimsonFlame. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="/app.js"></script>
+</body>
+</html>

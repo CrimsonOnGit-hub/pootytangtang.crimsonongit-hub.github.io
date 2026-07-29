@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uh Oh! | CrimsonFlame Official</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0c;
+            --glass-panel: rgba(22, 22, 26, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --crimson: #d90429;
+            --flame: #ff6b35;
+            --text-light: #fbfbfc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at 50% 40%, rgba(217, 4, 41, 0.15) 0%, transparent 60%);
+            color: var(--text-light);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .nav-logo span { color: var(--crimson); }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover { color: #fff; }
+
+        .error-viewport {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .error-card {
+            background: var(--glass-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 480px;
+            padding: 42px 36px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(217, 4, 41, 0.2);
+            backdrop-filter: blur(16px);
+            text-align: center;
+        }
+
+        .btn-home {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--crimson), var(--flame));
+            border: none;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 14px 28px;
+            border-radius: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(217, 4, 41, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(217, 4, 41, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-logo">CrimsonFlame<span>-Official</span></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+        </div>
+    </nav>
+
+    <main class="error-viewport">
+        <div class="error-card">
+            <div style="font-size: 3.5rem; margin-bottom: 12px;">⚠️</div>
+            <h1 style="font-family: 'Outfit', sans-serif; font-size: 2.4rem; font-weight: 900; color: #fff; margin-bottom: 12px;">Uh Oh!</h1>
+            <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 28px;">
+                It seems there isnt a webpage here. Try again later.
+            </p>
+            <a href="index.html" class="btn-home">Return Home →</a>
+        </div>
+    </main>
+
+</body>
+</html>

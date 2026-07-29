@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Dashboard | CrimsonFlame</title>
+    <link rel="stylesheet" href="/style.css?v=7">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Global Custom Crimson Loading Animation -->
+    <div id="page-loader">
+        <img src="/assets/loading.gif" alt="Loading..." class="loader-video">
+        <div class="loader-title">CrimsonFlame</div>
+    </div>
+    <script>
+        function hidePageLoader() {
+            var l = document.getElementById('page-loader');
+            if (l) {
+                l.classList.add('fade-out');
+                setTimeout(function() { l.style.display = 'none'; }, 400);
+            }
+        }
+        window.addEventListener('DOMContentLoaded', hidePageLoader);
+        window.addEventListener('load', hidePageLoader);
+        setTimeout(hidePageLoader, 1500);
+    </script>
+
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+    <div class="particles" id="particles"></div>
+
+    <nav class="pill-nav">
+        <a href="/index.html" class="pill-brand">
+            <img src="https://i.ibb.co/TBkJR2Jn/unnamed-removebg-preview.png" alt="CF" class="pill-brand-logo">
+            CrimsonFlame
+        </a>
+        <a href="/index.html" class="pill-link">Home</a>
+        <a href="/projects" class="pill-link">Projects</a>
+        <a href="/dashboard" class="pill-link">Dashboard</a>
+        <a href="/support" class="pill-link">Support</a>
+    </nav>
+
+    <main class="dash-main">
+        <!-- Auth Required Notice (shown when signed out) -->
+        <div id="dev-auth-notice" class="dash-card" style="max-width: 480px; text-align: center;">
+            <h2>Developer Portal</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.5;">
+                Please sign in on the main dashboard to access your Developer Portal & manage SSO Links.
+            </p>
+            <a href="/dashboard" class="btn-primary" style="display: inline-block; text-decoration: none; width: 100%;">
+                Go to Sign In
+            </a>
+        </div>
+
+        <!-- Developer Dashboard Main View -->
+        <div id="dev-dashboard-container" class="dash-card" style="display: none; max-width: 620px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <h2 style="margin: 0;">🛠️ Developer Dashboard</h2>
+                <a href="/dashboard" style="color: var(--text-secondary); text-decoration: none; font-size: 0.88rem; font-weight: 600;">← Back to Profile</a>
+            </div>
+            
+            <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 24px; line-height: 1.5;">
+                Create <strong>SSO Links</strong> to integrate CrimsonFlame Single Sign-On into external applications, games, or services.
+            </p>
+
+            <!-- Create SSO Link Form -->
+            <div style="background: rgba(0,0,0,0.3); padding: 22px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 28px;">
+                <h3 style="font-size: 1.15rem; margin-bottom: 16px; color: #fff; display: flex; align-items: center; gap: 8px;">
+                    🔑 Create New SSO Link
+                </h3>
+
+                <form onsubmit="window.createSSOLink(event)">
+                    <label>App / Service Name *</label>
+                    <input type="text" id="sso-app-name" placeholder="e.g. Campus VR or My Game" required>
+
+                    <label>App Logo / Icon URL</label>
+                    <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 12px;">
+                        <input type="url" id="sso-app-logo" placeholder="https://i.ibb.co/..." style="flex: 1; margin-bottom: 0;">
+                        <button type="button" onclick="document.getElementById('sso-logo-file-input').click()" style="padding: 12px 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; cursor: pointer; white-space: nowrap; font-weight: 600; font-size: 0.85rem;">Upload Image</button>
+                        <input type="file" id="sso-logo-file-input" accept="image/*" style="display:none;" onchange="window.handleSSOLogoUpload(event.target.files[0])">
+                    </div>
+                    <div id="sso-logo-status" class="status-text" style="display:none;"></div>
+
+                    <label>Default Redirect URL (Optional)</label>
+                    <input type="url" id="sso-redirect-url" placeholder="e.g. http://localhost:9090 or https://myapp.com">
+
+                    <label>Permissions Needed</label>
+                    <div style="background: rgba(0,0,0,0.3); padding: 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 14px; display: flex; flex-direction: column; gap: 10px;">
+                        <label style="display: flex; align-items: center; gap: 10px; font-weight: 500; cursor: pointer; text-transform: none; font-size: 0.88rem; color: #ede8ea;">
+                            <input type="checkbox" id="perm-profile" checked style="width: 16px; height: 16px; accent-color: var(--crimson);">
+                            <span>Access your display name & profile picture</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; font-weight: 500; cursor: pointer; text-transform: none; font-size: 0.88rem; color: #ede8ea;">
+                            <input type="checkbox" id="perm-email" checked style="width: 16px; height: 16px; accent-color: var(--crimson);">
+                            <span>View your email address</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; font-weight: 500; cursor: pointer; text-transform: none; font-size: 0.88rem; color: #ede8ea;">
+                            <input type="checkbox" id="perm-sso" checked style="width: 16px; height: 16px; accent-color: var(--crimson);">
+                            <span>Authenticate via CrimsonFlame SSO</span>
+                        </label>
+                    </div>
+
+                    <label>Custom Permissions (Comma-separated)</label>
+                    <input type="text" id="sso-custom-perms" placeholder="e.g. Sync Chat History, Connect VR Inventory">
+
+                    <button type="submit" id="btn-create-sso" class="btn-primary" style="margin-top: 10px;">
+                        ✨ Generate SSO Link Key
+                    </button>
+                </form>
+            </div>
+
+            <!-- Active SSO Keys List -->
+            <div class="section-header" style="color: var(--crimson-light);">
+                <img src="https://cdn-icons-png.flaticon.com/512/3064/3064155.png" style="filter: invert(1); width: 20px;"> 
+                <h3>Your SSO Applications & Keys</h3>
+            </div>
+
+            <div id="sso-links-list" style="display: flex; flex-direction: column; gap: 16px; margin-top: 14px;">
+                <p id="sso-empty-msg" style="color: var(--text-secondary); font-size: 0.88rem; text-align: center; padding: 20px;">
+                    No SSO Links created yet. Fill out the form above to generate your first key!
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <div id="custom-alert" class="custom-modal-overlay">
+        <div class="custom-modal-box">
+            <div class="custom-modal-content">
+                <h3 class="custom-modal-title">Alert</h3>
+                <p id="custom-alert-message" class="custom-modal-text"></p>
+                <button onclick="document.getElementById('custom-alert').classList.remove('active')" class="custom-modal-btn confirm" style="width: 100%;">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>© 2026 <strong>CrimsonFlame</strong>. All rights reserved.</p>
+    </footer>
+
+    <script>
+    (function() {
+        const c = document.getElementById('particles');
+        if (!c) return;
+        for (let i = 0; i < 25; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const s = Math.random() * 3 + 1;
+            p.style.width = s + 'px';
+            p.style.height = s + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.top = Math.random() * 100 + '%';
+            p.style.animationDuration = (Math.random() * 12 + 8) + 's';
+            p.style.animationDelay = (Math.random() * 8) + 's';
+            p.style.opacity = Math.random() * 0.4 + 0.1;
+            c.appendChild(p);
+        }
+    })();
+    </script>
+
+    <script type="module" src="/developer.js"></script>
+</body>
+</html>

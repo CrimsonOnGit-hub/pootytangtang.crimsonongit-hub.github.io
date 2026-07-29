@@ -3,36 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrimsonFlame — Archive Build V1</title>
-    <link rel="icon" type="image/png" href="https://i.ibb.co/TBkJR2Jn/unnamed-removebg-preview.png">
+    <title>CrimsonFlame — Games & Interactive Experiences (V1 Classic)</title>
+    <link rel="stylesheet" href="../../V3/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #0A0A0E; color: #FFF; font-family: 'Inter', sans-serif; min-height: 100vh; }
-        .version-ribbon {
+        .version-top-bar {
             background: linear-gradient(135deg, #FF6B00, #FF2A00);
-            color: #FFF; text-align: center; font-weight: 800; font-size: 0.85rem; padding: 8px 16px;
-            letter-spacing: 0.5px; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center;
+            color: #FFF;
+            text-align: center;
+            padding: 8px 16px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 99999;
         }
-        .version-ribbon a { color: #FFF; text-decoration: underline; font-weight: 700; }
-        .hero { text-align: center; padding: 80px 20px; max-width: 800px; margin: 0 auto; }
-        .hero h1 { font-family: 'Outfit', sans-serif; font-size: 3.5rem; font-weight: 900; background: linear-gradient(135deg, #FFF, #FF6B00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { color: #A0A0B0; font-size: 1.1rem; line-height: 1.6; margin-top: 16px; }
-        .badge { display: inline-block; padding: 6px 16px; border-radius: 20px; background: rgba(255,107,0,0.15); border: 1px solid rgba(255,107,0,0.4); color: #FF6B00; font-weight: 700; font-size: 0.82rem; margin-bottom: 16px; }
+        .version-top-bar a {
+            color: #FFF;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <div class="version-ribbon">
-        <span>🏛️ ARCHIVED BUILD V1 • INITIAL STUDIO RELEASE</span>
-        <a href="../">← Return to Vault</a>
+    <div class="version-top-bar">
+        <span>🏛️ ARCHIVE V1 • CLASSIC INITIAL BUILD</span>
+        <a href="../../">← Return to Vault</a>
     </div>
 
+    <!-- Ambient Background -->
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Floating Pill Nav -->
+    <nav class="pill-nav" style="margin-top: 15px;">
+        <a href="index.html" class="pill-brand">
+            <img src="https://i.ibb.co/TBkJR2Jn/unnamed-removebg-preview.png" alt="CF" class="pill-brand-logo">
+            CrimsonFlame V1
+        </a>
+        <a href="#projects" class="pill-link">Projects</a>
+        <a href="#about" class="pill-link">About</a>
+        <a href="https://discord.gg/tNK8z9gYGQ" class="pill-cta" target="_blank">Discord</a>
+    </nav>
+
+    <!-- Hero Section -->
     <section class="hero">
-        <span class="badge">V1.0.0 Snapshot</span>
-        <h1>CrimsonFlame V1</h1>
-        <p>The original initial release of CrimsonFlame. Featuring multi-page Quest VR game showcases, spatial vector movement labs, and initial community portals.</p>
+        <div class="hero-left">
+            <!-- Animated Orb -->
+            <div class="orb-container">
+                <div class="orb"></div>
+                <div class="orb-ring"></div>
+                <div class="orb-ring orb-ring-2"></div>
+            </div>
+            <!-- Floating Badges -->
+            <div class="floating-badge badge-1">
+                <span class="badge-icon">🎓</span>
+                <span class="badge-text">Campus VR</span>
+            </div>
+            <div class="floating-badge badge-2">
+                <span class="badge-icon">🎮</span>
+                <span class="badge-text">Crimson Protocol</span>
+            </div>
+            <div class="floating-badge badge-3">
+                <span class="badge-icon">🕹️</span>
+                <span class="badge-text">Multiplayer VR</span>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="hero-tag">🔥 Game & VR Studio • V1 Initial</div>
+            <h1 class="hero-title">Crimson<span class="gradient-word">Flame</span></h1>
+            <p class="hero-sub">Creating innovative, immersive Social VR metaverses, multiplayer games, and cutting-edge interactive experiences.</p>
+            
+            <div class="hero-actions">
+                <a href="#projects" class="btn-explore">Explore Projects →</a>
+                <a href="https://discord.gg/tNK8z9gYGQ" class="btn-outline" target="_blank">Discord</a>
+            </div>
+        </div>
     </section>
+
+    <!-- Section Cards -->
+    <section class="sections" id="about">
+        <div class="section-card">
+            <div class="section-label">About</div>
+            <h2>What is CrimsonFlame?</h2>
+            <p>CrimsonFlame is an independent game studio building immersive multiplayer experiences. From custom VR locomotion systems to real-time networked worlds, we push the limits of what's possible in Unity and beyond.</p>
+        </div>
+
+        <div class="section-card" id="projects">
+            <div class="section-label">Flagship</div>
+            <h2>Crimson Protocol</h2>
+            <p>Our flagship multiplayer VR game built in Unity — featuring custom locomotion, spatial audio, physics-based interactions, and dedicated servers on Meta Quest.</p>
+        </div>
+
+        <div class="section-card">
+            <div class="section-label">R&D</div>
+            <h2>VR Locomotion Lab</h2>
+            <p>Experimental spatial vector math, physics interactions, and next-gen locomotion systems. Building the movement tech that makes VR feel natural.</p>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <p>© 2026 <strong>CrimsonFlame Archives V1</strong>. All rights reserved.</p>
+    </footer>
+
+    <script>
+    (function() {
+        const container = document.getElementById('particles');
+        if (!container) return;
+        const count = 35;
+        for (let i = 0; i < count; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 3 + 1;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.top = Math.random() * 100 + '%';
+            p.style.animationDuration = (Math.random() * 12 + 8) + 's';
+            p.style.animationDelay = (Math.random() * 8) + 's';
+            p.style.opacity = Math.random() * 0.5 + 0.15;
+            container.appendChild(p);
+        }
+    })();
+    </script>
 </body>
 </html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1000, initial-scale=1.0">
+    <title>CrimsonFlame's Profile - Roblox Archive Vault</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/TBkJR2Jn/unnamed-removebg-preview.png">
+    <style>
+        /* 2012 ROBLOX STYLESHEET RECREATION */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #1c5da5 url('https://web.archive.org/web/20120615000000im_/http://www.roblox.com/images/CSS/sky_bg.png') repeat-x top center;
+            background-attachment: fixed;
+            background-size: cover;
+            color: #000;
+            font-size: 11px;
+        }
+
+        /* Top Header Container */
+        #HeaderContainer {
+            width: 970px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #UserHeader {
+            padding: 4px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-welcome {
+            background: #fff;
+            border: 1px solid #777;
+            padding: 2px 8px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+
+        .user-welcome a {
+            color: #0055b3;
+            text-decoration: underline;
+            font-weight: normal;
+        }
+
+        /* Banner Logo */
+        .banner-logo-bar {
+            height: 80px;
+            background: url('https://i.ibb.co/TBkJR2Jn/unnamed-removebg-preview.png') no-repeat left center;
+            background-size: 65px;
+            display: flex;
+            align-items: center;
+            padding-left: 80px;
+            position: relative;
+        }
+
+        .banner-title {
+            font-family: 'Arial Black', Impact, sans-serif;
+            font-size: 38px;
+            color: #E2231A;
+            text-shadow: 2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0px 4px 8px rgba(0,0,0,0.5);
+            letter-spacing: -1px;
+        }
+
+        /* Stats Box */
+        .header-stats-box {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: #ffffff;
+            border: 1px solid #000;
+            border-radius: 5px;
+            padding: 6px 12px;
+            display: flex;
+            gap: 12px;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* Nav Bars */
+        .main-nav {
+            background: linear-gradient(to bottom, #0055B3 0%, #002B66 100%);
+            border: 1px solid #000;
+            border-bottom: none;
+            display: flex;
+            height: 30px;
+        }
+
+        .main-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 6px 14px;
+            font-size: 12px;
+            border-right: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+        }
+
+        .main-nav a:hover, .main-nav a.active {
+            background: #00224D;
+        }
+
+        .sub-nav {
+            background: #393939;
+            border: 1px solid #000;
+            border-top: 1px solid #555;
+            display: flex;
+            height: 24px;
+            padding-left: 10px;
+        }
+
+        .sub-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            padding: 3px 10px;
+        }
+
+        .sub-nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Content Container */
+        #MainContent {
+            width: 970px;
+            margin: 10px auto;
+            background: #fff;
+            border: 1px solid #000;
+            padding: 12px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.4);
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Column Layout */
+        .left-col {
+            width: 380px;
+        }
+
+        .right-col {
+            width: 550px;
+        }
+
+        /* Roblox Panel / Box */
+        .roblox-panel {
+            border: 1px solid #666;
+            margin-bottom: 15px;
+            background: #fff;
+        }
+
+        .roblox-panel-header {
+            background: #393939;
+            color: #fff;
+            font-weight: bold;
+            font-size: 13px;
+            padding: 5px 10px;
+            border-bottom: 1px solid #000;
+        }
+
+        .roblox-panel-body {
+            padding: 10px;
+        }
+
+        /* Profile Left Content */
+        .profile-id {
+            text-align: center;
+            color: #0055b3;
+            font-size: 11px;
+            margin-bottom: 10px;
+            word-break: break-all;
+        }
+
+        .avatar-display-box {
+            text-align: center;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .avatar-img {
+            width: 200px;
+            height: 220px;
+            object-fit: contain;
+            filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .status-tag {
+            font-size: 11px;
+            color: #555;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .primary-group-box {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 10px;
+        }
+
+        .group-logo {
+            width: 48px;
+            height: 48px;
+            border: 1px solid #999;
+            padding: 2px;
+            background: #fff;
+        }
+
+        .blurb-box {
+            border: 1px solid #777;
+            padding: 10px;
+            background: #fafafa;
+            font-size: 11px;
+            line-height: 1.4;
+            max-height: 220px;
+            overflow-y: auto;
+            margin-top: 10px;
+            white-space: pre-line;
+        }
+
+        .action-link-row {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .action-link-row a {
+            color: #0055b3;
+            font-weight: bold;
+            font-size: 11px;
+            text-decoration: underline;
+        }
+
+        /* Places Right Content */
+        .showcase-place-card {
+            border: 1px solid #999;
+            background: #f2f2f2;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        .showcase-title-bar {
+            background: #e0e0e0;
+            border: 1px solid #b5b5b5;
+            padding: 4px 8px;
+            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .visit-btn-wrap {
+            text-align: center;
+            margin: 8px 0;
+        }
+
+        .btn-roblox-visit {
+            background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+            border: 1px solid #777;
+            border-radius: 3px;
+            padding: 4px 16px;
+            font-weight: bold;
+            font-size: 11px;
+            cursor: pointer;
+            color: #333;
+            box-shadow: inset 0 1px 0 #fff;
+        }
+
+        .btn-roblox-visit:hover {
+            background: #e6e6e6;
+            border-color: #444;
+        }
+
+        .place-stats-line {
+            font-size: 11px;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        .place-thumbnail-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border: 1px solid #000;
+            display: block;
+        }
+
+        .place-desc-box {
+            border: 1px dashed #aaa;
+            background: #fff;
+            padding: 6px 10px;
+            font-size: 11px;
+            margin-top: 8px;
+            color: #333;
+        }
+
+        /* Accordion Place List */
+        .places-list-accordion {
+            border-top: 1px solid #ccc;
+            margin-top: 10px;
+        }
+
+        .place-accordion-item {
+            background: #e6e6e6;
+            border: 1px solid #b5b5b5;
+            margin-top: 4px;
+            padding: 5px 10px;
+            font-weight: bold;
+            font-size: 11px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .place-accordion-item:hover, .place-accordion-item.active {
+            background: #d4d4d4;
+            border-color: #888;
+        }
+
+        /* Friends Grid */
+        .friends-header {
+            font-size: 11px;
+            margin-bottom: 8px;
+        }
+
+        .friends-grid {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-start;
+        }
+
+        .friend-card {
+            text-align: center;
+            width: 90px;
+        }
+
+        .friend-avatar-img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+
+        .friend-name {
+            font-size: 10px;
+            color: #0055b3;
+            text-decoration: underline;
+            margin-top: 3px;
+            word-break: break-all;
+        }
+
+        .online-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            margin-right: 2px;
+        }
+        .online-dot.green { background: #00e600; }
+        .online-dot.red { background: #ff0000; }
+    </style>
+</head>
+<body>
+
+    <!-- Top Header -->
+    <div id="HeaderContainer">
+        <div id="UserHeader">
+            <div class="user-welcome">
+                Hi CrimsonOnVR <a href="#">[Logout]</a>
+            </div>
+        </div>
+
+        <div class="banner-logo-bar">
+            <div class="banner-title">CRIMSONFLAME</div>
+
+            <div class="header-stats-box">
+                <div class="stat-item">💬 <span>142</span></div>
+                <div class="stat-item" style="color: #008000;">R$ <span>2</span></div>
+                <div class="stat-item" style="color: #cc8800;">🎟️ <span>0</span></div>
+            </div>
+        </div>
+
+        <div class="main-nav">
+            <a href="/" class="active">My CRIMSON</a>
+            <a href="#versions">Versions ▼</a>
+            <a href="/projects">Catalog</a>
+            <a href="/archive">Vault</a>
+            <a href="https://discord.gg/tNK8z9gYGQ" target="_blank">Discord</a>
+            <a href="/support">Help</a>
+        </div>
+
+        <div class="sub-nav">
+            <a href="/">Home</a>
+            <a href="#places">Places / Versions</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/developer">Developer</a>
+            <a href="/test">Staging Sandbox</a>
+            <a href="/link">SSO Link</a>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div id="MainContent">
+
+        <!-- LEFT COLUMN: Profile & Bio -->
+        <div class="left-col">
+            <div class="roblox-panel">
+                <div class="roblox-panel-header">
+                    CrimsonFlame's Profile
+                </div>
+                <div class="roblox-panel-body">
+                    <div class="status-tag">[ Online ]</div>
+                    <div class="profile-id">https://crimsonflame-official.github.io/vault</div>
+
+                    <div class="avatar-display-box">
+                        <img src="https://i.ibb.co/TBkJR2Jn/unnamed-removebg-preview.png" alt="Avatar" class="avatar-img">
+                    </div>
+
+                    <div class="primary-group-box">
+                        <strong>Primary Group:</strong><br>
+                        <img src="https://i.ibb.co/TBkJR2Jn/unnamed-removebg-preview.png" alt="Group" class="group-logo"><br>
+                        <a href="https://github.com/CrimsonFlame-Official" style="color: #0055b3; font-weight: bold; text-decoration: underline;">Team CrimsonFlame VR</a>
+                    </div>
+
+                    <div class="blurb-box">
+Bingo Baby Baby I love you is that crazy?
+Pig-e Rebooted: I loved to work on this game
+Evilsaken: I guess
+Die of death modded: I made most of the people change their vision of how the game really was.
+I will remember you guys, I don't have that much online friends now and I feel lonely, only some part of them are really good with me, Sam, Abble, Reindrill, Gloober civilian, Guest pieo. And to other people that really helped me out, Floppa, I had so much good times in this platform, I learned much here, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 8 years of being part of this community, I love you guys, I just want time to be like before, full of friends and no pressure in, but, I still have irl friends and I feel very happy about it, I just, this roblox, is not the same, love you guys.
+                    </div>
+
+                    <div class="action-link-row">
+                        <a href="https://discord.gg/tNK8z9gYGQ" target="_blank">Send Message</a> | <a href="/support">Report Issue</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Active Places / Versions Vault -->
+        <div class="right-col">
+            <div class="roblox-panel" id="places">
+                <div class="roblox-panel-header">
+                    Active Places / Historical Versions
+                </div>
+                <div class="roblox-panel-body">
+
+                    <!-- SHOWCASE PLACE -->
+                    <div class="showcase-place-card">
+                        <div class="showcase-title-bar" id="place-title-display">
+                            [V1.0.0] CrimsonFlame Initial Release
+                        </div>
+
+                        <div class="visit-btn-wrap">
+                            <button class="btn-roblox-visit" id="visit-btn" onclick="launchSelectedVersion()">Visit Online</button>
+                        </div>
+
+                        <div class="place-stats-line" id="place-stats-display">
+                            Visited 1,420 times (0 active players)
+                        </div>
+
+                        <img src="bg.png" alt="Place Thumbnail" class="place-thumbnail-img" id="place-thumb-img">
+
+                        <div class="place-desc-box" id="place-desc-display">
+                            helo fiend thsi is the best gem • CrimsonFlame initial multi-page studio build with Quest VR project showcases.
+                        </div>
+                    </div>
+
+                    <!-- ACCORDION PLACES LIST -->
+                    <div class="places-list-accordion">
+                        <div class="place-accordion-item active" onclick="selectVersion(0)">
+                            <span>[V1.0.0] CrimsonFlame Classic Release</span>
+                            <span>▶ Selected</span>
+                        </div>
+                        <div class="place-accordion-item" onclick="selectVersion(1)">
+                            <span>[V1.2.0] HorizonNOVA Multi-Turn Engine</span>
+                            <span>▶ View</span>
+                        </div>
+                        <div class="place-accordion-item" onclick="selectVersion(2)">
+                            <span>[V1.5.0] Custom Ring Loader & SSO Auth</span>
+                            <span>▶ View</span>
+                        </div>
+                        <div class="place-accordion-item" onclick="selectVersion(3)">
+                            <span>[STAGING] Experimental Sandbox Build</span>
+                            <span>▶ View</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- FRIENDS SECTION -->
+            <div class="roblox-panel">
+                <div class="roblox-panel-header">
+                    Crimson's Friends (<a href="#" style="color: #fff; text-decoration: underline;">See all</a>)
+                </div>
+                <div class="roblox-panel-body">
+                    <div class="friends-grid">
+                        <div class="friend-card">
+                            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Friend" class="friend-avatar-img"><br>
+                            <span class="online-dot red"></span><a href="#" class="friend-name">TINCHO34452</a>
+                        </div>
+                        <div class="friend-card">
+                            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Friend" class="friend-avatar-img"><br>
+                            <span class="online-dot green"></span><a href="#" class="friend-name">MATOthe1st</a>
+                        </div>
+                        <div class="friend-card">
+                            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Friend" class="friend-avatar-img"><br>
+                            <span class="online-dot red"></span><a href="#" class="friend-name">elichadosa</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var versionsData = [
+            {
+                title: "[V1.0.0] CrimsonFlame Initial Release",
+                url: "/archive/v1/",
+                visits: "Visited 1,420 times (0 active players)",
+                desc: "helo fiend thsi is the best gem • CrimsonFlame initial multi-page studio build with Quest VR project showcases.",
+                thumb: "bg.png"
+            },
+            {
+                title: "[V1.2.0] HorizonNOVA Multi-Turn Engine",
+                url: "http://localhost:9090",
+                visits: "Visited 3,890 times (1 active player)",
+                desc: "Multi-turn conversational neural engine with ByteTokenizer and official spinning NOVA starburst logo.",
+                thumb: "llm-from-scratch/nova_logo.png"
+            },
+            {
+                title: "[V1.5.0] Custom Ring Loader & SSO Auth",
+                url: "/link",
+                visits: "Visited 5,112 times (2 active players)",
+                desc: "Custom yellow-orange transparent ring loading animation with deferred Firebase SSO popup authorization.",
+                thumb: "assets/loading.gif"
+            },
+            {
+                title: "[STAGING] Experimental Sandbox Build",
+                url: "/test",
+                visits: "Visited 842 times (0 active players)",
+                desc: "Live testing environment for benchmarking UI keyframes, locomotion protocols, and upcoming updates.",
+                thumb: "bg.png"
+            }
+        ];
+
+        var selectedIndex = 0;
+
+        function selectVersion(idx) {
+            selectedIndex = idx;
+            var data = versionsData[idx];
+
+            document.getElementById('place-title-display').innerText = data.title;
+            document.getElementById('place-stats-display').innerText = data.visits;
+            document.getElementById('place-desc-display').innerText = data.desc;
+            document.getElementById('place-thumb-img').src = data.thumb;
+
+            var items = document.querySelectorAll('.place-accordion-item');
+            items.forEach(function(item, i) {
+                if (i === idx) {
+                    item.classList.add('active');
+                    item.querySelector('span:last-child').innerText = '▶ Selected';
+                } else {
+                    item.classList.remove('active');
+                    item.querySelector('span:last-child').innerText = '▶ View';
+                }
+            });
+        }
+
+        function launchSelectedVersion() {
+            var data = versionsData[selectedIndex];
+            window.location.href = data.url;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | CrimsonFlame Studios</title>
+    <link rel="stylesheet" href="/style.css?v=7">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .projects-hero {
+            padding: 120px 20px 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .projects-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: var(--crimson-glow);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            color: var(--crimson-light);
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .projects-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 14px;
+            line-height: 1.1;
+        }
+
+        .projects-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .featured-card {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            overflow: hidden;
+            max-width: 1000px;
+            margin: 40px auto 60px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px var(--crimson-glow);
+            backdrop-filter: blur(12px);
+        }
+
+        .featured-banner {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .featured-content {
+            padding: 40px;
+        }
+
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .tag-vr {
+            background: rgba(220, 38, 38, 0.2);
+            color: var(--crimson-light);
+            border: 1px solid rgba(220, 38, 38, 0.4);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+        }
+
+        .tag-status {
+            background: rgba(46, 204, 113, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .featured-title {
+            font-family: var(--font-heading);
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .featured-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-bottom: 32px;
+        }
+
+        .feature-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 18px;
+        }
+
+        .feature-box h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-box p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto 80px;
+        }
+
+        .project-mini-card {
+            background: var(--bg-card);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 28px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .project-mini-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(220, 38, 38, 0.3);
+        }
+
+        .project-mini-icon {
+            font-size: 2rem;
+            margin-bottom: 14px;
+        }
+
+        .project-mini-title {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .project-mini-desc {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Global Custom Crimson Loading Animation -->
+    <div id="page-loader">
+        <img src="/assets/loading.gif" alt="Loading..." class="loader-video">
+        <div class="loader-title">CrimsonFlame</div>
+    </div>
+    <script>
+        function hidePageLoader() {
+            var l = document.getElementById('page-loader');
+            if (l) {
+                l.classList.add('fade-out');
+                setTimeout(function() { l.style.display = 'none'; }, 400);
+            }
+        }
+        window.addEventListener('DOMContentLoaded', hidePageLoader);
+        window.addEventListener('load', hidePageLoader);
+        setTimeout(hidePageLoader, 1500);
+    </script>
+
+    <!-- Ambient Background -->
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Floating Pill Nav -->
+    <nav class="pill-nav">
+        <a href="/index.html" class="pill-brand">
+            <img src="https://i.ibb.co/TBkJR2Jn/unnamed-removebg-preview.png" alt="CF" class="pill-brand-logo">
+            CrimsonFlame
+        </a>
+        <a href="/index.html" class="pill-link">Home</a>
+        <a href="/projects" class="pill-link" style="color: #fff; font-weight: 700;">Projects</a>
+        <a href="/dashboard" class="pill-link">Dashboard</a>
+        <a href="/support" class="pill-link">Support</a>
+        <a href="https://discord.gg/tNK8z9gYGQ" class="pill-cta" target="_blank">
+            <svg width="16" height="12" viewBox="0 0 24 18" fill="currentColor"><path d="M20.317 1.492a19.7 19.7 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.7 19.7 0 0 0 3.677 1.492a.07.07 0 0 0-.032.027C.533 6.093-.32 10.555.099 14.961a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03z"/></svg>
+            Discord
+        </a>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="projects-hero">
+        <div class="projects-badge">🎮 CrimsonFlame Showcase</div>
+        <h1 class="projects-title">Our <span class="gradient-word">Projects</span></h1>
+        <p class="projects-subtitle">
+            From Social VR Metaverses to Real-Time Multiplayer & Single Sign-On Infrastructure.
+        </p>
+    </header>
+
+    <!-- Featured Flagship: CAMPUS -->
+    <div class="featured-card">
+        <div style="background: linear-gradient(135deg, rgba(220, 38, 38, 0.25), rgba(251, 146, 60, 0.15)); padding: 48px 40px 30px; border-bottom: 1px solid var(--card-border); text-align: left;">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🎓</div>
+            <h2 style="font-family: var(--font-heading); font-size: 2.8rem; font-weight: 900; color: #fff; margin-bottom: 8px;">
+                Campus
+            </h2>
+            <p style="color: var(--crimson-light); font-size: 1.1rem; font-weight: 600;">
+                Next-Gen Social VR Game & Metaverse
+            </p>
+        </div>
+        
+        <div class="featured-content">
+            <div class="featured-meta">
+                <span class="tag-vr">🎮 SOCIAL VR GAME</span>
+                <span class="tag-status">● IN ACTIVE DEVELOPMENT</span>
+            </div>
+
+            <h2 class="featured-title">
+                🎓 Campus
+            </h2>
+
+            <p class="featured-desc">
+                <strong>Campus</strong> is a Social VR Game where players meet, hang out, play action mini-games, and explore virtual spaces together with seamless real-time multiplayer.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h4>🏫 VR Campus Quad</h4>
+                    <p>Explore interactive university lounges, dorm rooms, outdoor plazas, and custom social spaces.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>🎯 Mini-Game Arenas</h4>
+                    <p>Action-packed mini-games, sports courts, and multiplayer arenas with real-time physics.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>🎭 Expressive Avatars</h4>
+                    <p>Full spatial voice audio, head movement, and real-time hand-tracking gestures.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>🌐 Cross-Platform Play</h4>
+                    <p>Built for Meta Quest 2/3/Pro, PCVR, and desktop standalone VR multiplayer sessions.</p>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+                <a href="https://discord.gg/tNK8z9gYGQ" class="btn-primary" target="_blank" style="width: auto; padding: 12px 24px; text-decoration: none;">
+                    🔥 Join Playtest on Discord
+                </a>
+                <a href="/support" class="btn-secondary" style="width: auto; padding: 12px 24px; text-decoration: none; background: rgba(255,255,255,0.08);">
+                    💬 Learn More & Contact
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>© 2026 <strong>CrimsonFlame Studios</strong>. All rights reserved. |
+            <a href="https://youtube.com/@crimsonflameofficial" target="_blank">
+                <svg viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px;">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                YouTube
+            </a>
+        </p>
+    </footer>
+
+    <script>
+    (function() {
+        const c = document.getElementById('particles');
+        if (!c) return;
+        for (let i = 0; i < 25; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const s = Math.random() * 3 + 1;
+            p.style.width = s + 'px';
+            p.style.height = s + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.top = Math.random() * 100 + '%';
+            p.style.animationDuration = (Math.random() * 12 + 8) + 's';
+            p.style.animationDelay = (Math.random() * 8) + 's';
+            p.style.opacity = Math.random() * 0.4 + 0.1;
+            c.appendChild(p);
+        }
+    })();
+    </script>
+
+</body>
+</html>

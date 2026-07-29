@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Account | CrimsonFlame Official</title>
+    <link rel="stylesheet" href="/style.css?v=7">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0c;
+            --surface: #16161a;
+            --glass-panel: rgba(22, 22, 26, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --crimson: #d90429;
+            --flame: #ff6b35;
+            --accent-green: #2ecc71;
+            --text-light: #fbfbfc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at 50% 40%, rgba(217, 4, 41, 0.15) 0%, transparent 60%);
+            color: var(--text-light);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .nav-logo span { color: var(--crimson); }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover { color: #fff; }
+
+        .link-viewport {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .link-card {
+            background: var(--glass-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 480px;
+            padding: 36px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(217, 4, 41, 0.2);
+            backdrop-filter: blur(16px);
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.94);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .link-avatars {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .avatar-box {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .avatar-crimson {
+            background: linear-gradient(135deg, var(--crimson), var(--flame));
+        }
+
+        .avatar-target {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .link-connection-arrow {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            animation: pulseArrow 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulseArrow {
+            0%, 100% { opacity: 0.4; transform: translateX(0); }
+            50% { opacity: 1; transform: translateX(3px); }
+        }
+
+        .link-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .link-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .permissions-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 28px;
+            text-align: left;
+        }
+
+        .permissions-title {
+            font-size: 0.76rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .permission-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.88rem;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+        }
+
+        .permission-item:last-child { margin-bottom: 0; }
+
+        .perm-icon { color: var(--accent-green); font-size: 1rem; }
+
+        .action-buttons {
+            display: flex;
+            gap: 14px;
+        }
+
+        .btn-authorize {
+            flex: 1;
+            background: linear-gradient(135deg, var(--crimson), var(--flame));
+            border: none;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 14px;
+            border-radius: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(217, 4, 41, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .btn-authorize:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(217, 4, 41, 0.6);
+        }
+
+        .btn-authorize:disabled {
+            cursor: not-allowed;
+        }
+
+        .btn-cancel {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 14px 20px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-cancel:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+
+        .btn-google {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background 0.2s;
+        }
+
+        .btn-google:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .profile-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(46,204,113,0.1);
+            border: 1px solid rgba(46,204,113,0.3);
+            padding: 10px 14px;
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        .success-banner {
+            display: none;
+            background: rgba(46, 204, 113, 0.15);
+            border: 1px solid var(--accent-green);
+            color: #4ade80;
+            padding: 14px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Global Custom Crimson Loading Animation -->
+    <div id="page-loader">
+        <img src="/assets/loading.gif" alt="Loading..." class="loader-video">
+        <div class="loader-title">CrimsonFlame</div>
+    </div>
+
+    <nav>
+        <div class="nav-logo">CrimsonFlame<span>-Official</span> | Single Sign-On</div>
+        <div class="nav-links">
+            <a href="/index.html">← Hub</a>
+            <a href="/dashboard">Dashboard</a>
+        </div>
+    </nav>
+
+    <main class="link-viewport">
+        <div class="link-card">
+            <!-- App Avatars -->
+            <div class="link-avatars">
+                <div class="avatar-box avatar-crimson">
+                    <img src="https://i.ibb.co/TBkJR2Jn/unnamed-removebg-preview.png" alt="CF" style="width: 40px; height: 40px; object-fit: contain; border-radius: 8px;">
+                </div>
+                <div class="link-connection-arrow">⟷</div>
+                <div id="service-avatar" class="avatar-box avatar-target">
+                    <img id="service-logo" src="https://i.ibb.co/TBkJR2Jn/unnamed-removebg-preview.png" alt="App" style="width: 40px; height: 40px; object-fit: contain; border-radius: 8px;">
+                </div>
+            </div>
+
+
+            <!-- Dynamic Heading -->
+            <h1 id="link-header-title" class="link-title">Link Account</h1>
+            <p id="link-header-subtitle" class="link-subtitle">
+                Authorizing will connect your <strong>CrimsonFlame-Official</strong> account to <strong><span id="service-name-text">this service</span></strong>.
+            </p>
+
+            <!-- Permissions Box -->
+            <div id="sso-permissions-container">
+                <div class="permissions-box">
+                    <div class="permissions-title">This app will be able to</div>
+                    <div class="permission-item">
+                        <span class="perm-icon">✓</span>
+                        <span>Access your display name & profile picture</span>
+                    </div>
+                    <div class="permission-item">
+                        <span class="perm-icon">✓</span>
+                        <span>View your email address</span>
+                    </div>
+                    <div class="permission-item">
+                        <span class="perm-icon">✓</span>
+                        <span>Authenticate via CrimsonFlame SSO</span>
+                    </div>
+                </div>
+
+                <div class="permissions-box" style="border-color: rgba(239, 68, 68, 0.2);">
+                    <div class="permissions-title" style="color: #f87171;">This app will NOT be able to</div>
+                    <div class="permission-item">
+                        <span style="color: #f87171; font-size: 1rem;">✕</span>
+                        <span>Change your password or account settings</span>
+                    </div>
+                    <div class="permission-item">
+                        <span style="color: #f87171; font-size: 1rem;">✕</span>
+                        <span>Post or act on your behalf</span>
+                    </div>
+                    <div class="permission-item">
+                        <span style="color: #f87171; font-size: 1rem;">✕</span>
+                        <span>Access private messages or payment info</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sign-in prompt (shown when not logged in) -->
+            <div id="auth-needed" style="margin-bottom: 16px;">
+                <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 12px;">Sign in to your CrimsonFlame account first:</p>
+                <button onclick="window.signInWithGoogle()" class="btn-google">
+                    <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" style="width: 18px; height: 18px;"> Sign in with Google
+                </button>
+            </div>
+
+            <!-- Signed-in profile (shown when logged in) -->
+            <div id="user-profile-bar" style="display: none; margin-bottom: 16px;">
+                <div class="profile-bar">
+                    <img id="link-user-pfp" src="" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+                    <div>
+                        <div id="link-user-name" style="font-weight: 700; font-size: 0.9rem; color: #4ade80;"></div>
+                        <div id="link-user-email" style="font-size: 0.78rem; color: var(--text-muted);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button onclick="window.cancelLinking()" class="btn-cancel">Cancel</button>
+                <button id="authorize-btn" onclick="window.authorizeLinking()" class="btn-authorize" disabled style="opacity: 0.5;">
+                    Sign in first
+                </button>
+            </div>
+
+            <div id="success-message" class="success-banner">
+                ✓ Account Linked Successfully! Redirecting...
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBSSJKDrFJ1_qlliZqgw34CY2TSaKOxxxM",
+            authDomain: "crimsonflame-8169e.firebaseapp.com",
+            projectId: "crimsonflame-8169e",
+            storageBucket: "crimsonflame-8169e.firebasestorage.app",
+            messagingSenderId: "406321213530",
+            appId: "1:406321213530:web:92d27a69d34d147393a863"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const googleProvider = new GoogleAuthProvider();
+
+        var urlParams = new URLSearchParams(window.location.search);
+        var linkKey = urlParams.get('linkkey') || urlParams.get('key');
+        var serviceName = urlParams.get('service') || null;
+        var redirectUrl = urlParams.get('redirect') || urlParams.get('redirect_uri') || null;
+
+        function applySSOAppDetails(data) {
+            if (data.appName) {
+                document.getElementById('service-name-text').textContent = data.appName;
+                document.getElementById('link-header-title').textContent = 'Link with ' + data.appName + '?';
+            }
+            if (data.appLogo) {
+                var logoEl = document.getElementById('service-logo');
+                if (logoEl) logoEl.src = data.appLogo;
+            }
+            if (!redirectUrl && data.redirectUrl) {
+                redirectUrl = data.redirectUrl;
+            }
+            if (data.permissions && data.permissions.length > 0) {
+                var permContainer = document.getElementById('sso-permissions-container');
+                if (permContainer) {
+                    var itemsHtml = data.permissions.map(p => `
+                        <div class="permission-item">
+                            <span class="perm-icon">✓</span>
+                            <span>${p}</span>
+                        </div>
+                    `).join('');
+                    permContainer.innerHTML = `
+                        <div class="permissions-box">
+                            <div class="permissions-title">This app will be able to</div>
+                            ${itemsHtml}
+                        </div>
+                        <div class="permissions-box" style="border-color: rgba(239, 68, 68, 0.2);">
+                            <div class="permissions-title" style="color: #f87171;">This app will NOT be able to</div>
+                            <div class="permission-item">
+                                <span style="color: #f87171; font-size: 1rem;">✕</span>
+                                <span>Change your password or account settings</span>
+                            </div>
+                            <div class="permission-item">
+                                <span style="color: #f87171; font-size: 1rem;">✕</span>
+                                <span>Post or act on your behalf</span>
+                            </div>
+                            <div class="permission-item">
+                                <span style="color: #f87171; font-size: 1rem;">✕</span>
+                                <span>Access private messages or payment info</span>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function revealSSOPopup() {
+            var loader = document.getElementById('page-loader');
+            var linkCard = document.querySelector('.link-card');
+            if (loader) loader.classList.add('fade-out');
+            if (linkCard) {
+                linkCard.style.opacity = '1';
+                linkCard.style.transform = 'scale(1)';
+            }
+        }
+
+        var isDataReady = false;
+        var isAuthReady = false;
+
+        function checkAndReveal() {
+            if (isDataReady && isAuthReady) {
+                setTimeout(revealSSOPopup, 200);
+            }
+        }
+
+        function showLinkErrorPage() {
+            var linkCard = document.querySelector('.link-card');
+            if (linkCard) {
+                linkCard.innerHTML = `
+                    <div style="font-size: 3rem; margin-bottom: 10px;">⚠️</div>
+                    <h1 style="font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 900; color: #fff; margin-bottom: 12px;">Uh Oh!</h1>
+                    <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 24px;">
+                        It seems there isnt a webpage here. Try again later.
+                    </p>
+                    <a href="/index.html" class="btn-authorize" style="display: inline-block; text-decoration: none; max-width: 200px; margin: 0 auto;">Return Home</a>
+                `;
+            }
+            isDataReady = true;
+            checkAndReveal();
+        }
+
+        // Check if linkkey parameter was provided
+        if (linkKey) {
+            // First check local storage cache
+            try {
+                var localSaved = localStorage.getItem('cf_sso_key_' + linkKey);
+                if (localSaved) {
+                    applySSOAppDetails(JSON.parse(localSaved));
+                }
+            } catch(e) {}
+
+            // Query Firestore for linkkey document
+            getDoc(doc(db, "sso_links", linkKey)).then(docSnap => {
+                if (docSnap.exists()) {
+                    applySSOAppDetails(docSnap.data());
+                    isDataReady = true;
+                    checkAndReveal();
+                } else if (!localStorage.getItem('cf_sso_key_' + linkKey)) {
+                    showLinkErrorPage();
+                } else {
+                    isDataReady = true;
+                    checkAndReveal();
+                }
+            }).catch(err => {
+                console.warn("Could not fetch SSO linkkey from Firestore:", err);
+                isDataReady = true;
+                checkAndReveal();
+            });
+        } else if (serviceName) {
+            document.getElementById('service-name-text').textContent = serviceName;
+            document.getElementById('link-header-title').textContent = 'Link with ' + serviceName + '?';
+            var appLogo = urlParams.get('logo');
+            if (appLogo) {
+                var logoEl = document.getElementById('service-logo');
+                if (logoEl) logoEl.src = decodeURIComponent(appLogo);
+            }
+            isDataReady = true;
+            checkAndReveal();
+        } else {
+            showLinkErrorPage();
+        }
+
+        var currentUser = null;
+        var DEFAULT_PFP = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
+        // Google sign-in directly on this page
+        window.signInWithGoogle = async function() {
+            try {
+                await signInWithPopup(auth, googleProvider);
+            } catch (err) {
+                alert("Sign-in error: " + err.message);
+            }
+        };
+
+        // Listen for CF Firebase auth state
+        onAuthStateChanged(auth, function(user) {
+            var authNeeded = document.getElementById('auth-needed');
+            var profileBar = document.getElementById('user-profile-bar');
+            var btn = document.getElementById('authorize-btn');
+
+            if (user) {
+                currentUser = user;
+                var name = user.displayName || user.email.split('@')[0];
+
+                // Hide sign-in, show profile
+                if (authNeeded) authNeeded.style.display = 'none';
+                if (profileBar) {
+                    profileBar.style.display = 'block';
+                    document.getElementById('link-user-pfp').src = user.photoURL || DEFAULT_PFP;
+                    document.getElementById('link-user-name').textContent = '✓ ' + name;
+                    document.getElementById('link-user-email').textContent = user.email;
+                }
+
+                // Enable authorize button
+                if (btn) {
+                    btn.textContent = 'Authorize as ' + name;
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                }
+            } else {
+                // Show sign-in prompt
+                if (authNeeded) authNeeded.style.display = 'block';
+                if (profileBar) profileBar.style.display = 'none';
+                if (btn) {
+                    btn.textContent = 'Sign in first';
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                }
+            }
+            isAuthReady = true;
+            checkAndReveal();
+        });
+
+        window.authorizeLinking = function() {
+            if (!currentUser) return;
+
+            var userData = {
+                uid: currentUser.uid,
+                name: currentUser.displayName || currentUser.email.split('@')[0],
+                email: currentUser.email,
+                pfp: currentUser.photoURL || DEFAULT_PFP
+            };
+
+            // 1. Record connected app on user's account
+            var appId = linkKey || (serviceName ? serviceName.toLowerCase().replace(/[^a-z0-9]/g, '_') : 'app_' + Math.random().toString(36).substring(2,8));
+            var appLogoUrl = document.getElementById('service-logo') ? document.getElementById('service-logo').src : DEFAULT_PFP;
+            var displayAppName = serviceName || (document.getElementById('service-name-text') ? document.getElementById('service-name-text').textContent : "Connected App");
+
+            setDoc(doc(db, "users", currentUser.uid, "connected_apps", appId), {
+                linkkey: linkKey || null,
+                appName: displayAppName,
+                appLogo: appLogoUrl,
+                authorizedAt: new Date().toISOString()
+            }, { merge: true }).catch(err => console.warn("Failed to record connected app:", err));
+
+            // 2. Increment analytics on SSO linkkey document
+            if (linkKey) {
+                var ssoRef = doc(db, "sso_links", linkKey);
+                getDoc(ssoRef).then(snap => {
+                    if (snap.exists()) {
+                        var d = snap.data();
+                        var uids = d.authorizedUserUids || {};
+                        uids[currentUser.uid] = true;
+                        updateDoc(ssoRef, {
+                            totalAuthorizations: increment(1),
+                            lastAuthorizedAt: new Date().toISOString(),
+                            authorizedUserUids: uids
+                        }).catch(e => console.warn(e));
+                    }
+                }).catch(e => console.warn(e));
+
+                try {
+                    var cached = localStorage.getItem('cf_sso_key_' + linkKey);
+                    if (cached) {
+                        var item = JSON.parse(cached);
+                        item.totalAuthorizations = (item.totalAuthorizations || 0) + 1;
+                        item.lastAuthorizedAt = new Date().toISOString();
+                        var uids = item.authorizedUserUids || {};
+                        uids[currentUser.uid] = true;
+                        item.authorizedUserUids = uids;
+                        localStorage.setItem('cf_sso_key_' + linkKey, JSON.stringify(item));
+                    }
+                } catch(e) {}
+            }
+
+            var successBanner = document.getElementById('success-message');
+            if (successBanner) successBanner.style.display = 'block';
+
+            var btn = document.getElementById('authorize-btn');
+            if (btn) {
+                btn.disabled = true;
+                btn.textContent = '✓ Linked!';
+                btn.style.opacity = '0.5';
+            }
+
+            setTimeout(function() {
+                if (redirectUrl) {
+                    window.location.href = redirectUrl + '?cf_auth=success&user_data=' + encodeURIComponent(JSON.stringify(userData));
+                } else {
+                    alert('Account linked successfully!');
+                }
+            }, 1200);
+        };
+
+        window.cancelLinking = function() {
+            if (redirectUrl) {
+                window.location.href = redirectUrl + '?cf_auth=canceled';
+            } else {
+                window.location.href = '../index.html';
+            }
+        };
+    </script>
+</body>
+</html>
