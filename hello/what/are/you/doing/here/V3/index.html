@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="planet3d.js" defer></script>
 </head>
 <body>
     <div class="version-top-bar" style="background: linear-gradient(135deg, #FF2A00, #FF0055); color: #FFF; text-align: center; padding: 8px 16px; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 99999;">
@@ -57,8 +59,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-left">
-            <!-- Animated Orb (Flame Planet) -->
-            <div class="orb-container">
+            <!-- 3D Interactive WebGL Flame Planet Globe -->
+            <div class="orb-container" id="planet-3d-container">
                 <div class="orb"></div>
                 <div class="orb-ring"></div>
                 <div class="orb-ring orb-ring-2"></div>
