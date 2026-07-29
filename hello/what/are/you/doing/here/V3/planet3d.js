@@ -1,5 +1,8 @@
-// ─── 3D INTERACTIVE FLAME PLANET GLOBE (WITH AUTOMATIC FALLBACK) ───
+// ─── 3D INTERACTIVE FLAME PLANET GLOBE & SETTING SWITCHER ───
 (function() {
+    let rendererInstance = null;
+    let containerInstance = null;
+
     function isWebGLSupported() {
         try {
             const canvas = document.createElement('canvas');
@@ -9,17 +12,39 @@
         }
     }
 
+    // Global Setting Switcher Function
+    window.setPlanetStyle = function(mode) {
+        localStorage.setItem('cf_planet_style', mode);
+        const container = document.getElementById('planet-3d-container');
+        if (!container) return;
+
+        const staticOrb = container.querySelector('.orb');
+        const staticRings = container.querySelectorAll('.orb-ring');
+        const webglCanvas = container.querySelector('canvas');
+
+        if (mode === 'legacy') {
+            if (webglCanvas) webglCanvas.style.display = 'none';
+            if (staticOrb) staticOrb.style.display = 'block';
+            staticRings.forEach(r => r.style.display = 'block');
+        } else {
+            // Default 3D mode
+            if (webglCanvas) webglCanvas.style.display = 'block';
+            if (staticOrb) staticOrb.style.display = 'none';
+        }
+    };
+
     function init3DPlanet() {
         const container = document.getElementById('planet-3d-container');
         if (!container) return;
+        containerInstance = container;
 
         // Check WebGL and Three.js availability — if missing, keep classic CSS orb fallback
         if (typeof THREE === 'undefined' || !isWebGLSupported()) {
             console.warn('[CrimsonFlame] WebGL or Three.js unavailable. Using classic CSS orb fallback.');
+            window.setPlanetStyle('legacy');
             return;
         }
 
-        let renderer;
         try {
             const width = container.clientWidth || 320;
             const height = container.clientHeight || 320;
@@ -29,7 +54,8 @@
             const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
             camera.position.z = 320;
 
-            renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+            rendererInstance = renderer;
             renderer.setSize(width, height);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.shadowMap.enabled = true;
@@ -41,10 +67,6 @@
             renderer.domElement.style.pointerEvents = 'auto';
             renderer.domElement.style.cursor = 'grab';
 
-            // Hide static CSS orb only after successful 3D WebGL renderer creation
-            const staticOrb = container.querySelector('.orb');
-            if (staticOrb) staticOrb.style.display = 'none';
-
             container.appendChild(renderer.domElement);
 
             // 2. Procedural Lava / Magma Canvas Texture Generator
@@ -54,11 +76,9 @@
                 canvas.height = 512;
                 const ctx = canvas.getContext('2d');
 
-                // Dark Basalt Crust Base
                 ctx.fillStyle = '#0a0305';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-                // Generate Perlin-like Molten Lava Veins & Hotspots
                 const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 const data = imgData.data;
 
@@ -88,7 +108,6 @@
                 }
                 ctx.putImageData(imgData, 0, 0);
 
-                // Add glowing hotspot patches
                 for (let i = 0; i < 40; i++) {
                     const cx = Math.random() * canvas.width;
                     const cy = Math.random() * canvas.height;
@@ -206,7 +225,7 @@
             backLight.position.set(-150, -100, -120);
             scene.add(backLight);
 
-            // 8. Interactivity & Damping Controls
+            // 8. Interactivity & Mouse Controls
             let isDragging = false;
             let previousMousePosition = { x: 0, y: 0 };
             let targetRotationX = 0;
@@ -305,10 +324,13 @@
 
             animate();
 
+            // Apply saved user setting
+            const savedStyle = localStorage.getItem('cf_planet_style') || '3d';
+            window.setPlanetStyle(savedStyle);
+
         } catch (err) {
             console.warn('[CrimsonFlame] WebGL initialization failed. Falling back to classic CSS orb:', err);
-            const staticOrb = container.querySelector('.orb');
-            if (staticOrb) staticOrb.style.display = 'block';
+            window.setPlanetStyle('legacy');
         }
     }
 
