@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="../planet3d.js" defer></script>
     <style>
         @media (max-width: 880px) {
             .dashboard-grid-layout {
@@ -47,6 +49,7 @@
         </a>
         <a href="../index.html" class="pill-link">Home</a>
         <a href="../projects/index.html" class="pill-link">Projects</a>
+        <button type="button" onclick="openSettingsModal()" class="pill-link" style="background:transparent; border:none; cursor:pointer; font-family:inherit; font-size:inherit; color:inherit;">⚙️ Settings</button>
         <a href="../support/index.html" class="pill-link">Support</a>
     </nav>
 
@@ -186,6 +189,34 @@
                         </div>
                     </div>
 
+                    <!-- Right Block 3: Hero Planet Render Mode Settings -->
+                    <div class="dash-card" style="margin-bottom: 0;">
+                        <div class="section-header" style="color: #fb923c; margin-bottom: 12px;">
+                            <span style="font-size: 1.2rem;">⚙️</span>
+                            <h3 style="margin: 0; font-family: 'Outfit', sans-serif;">Hero Planet Render Mode</h3>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 0.86rem; margin-bottom: 16px; line-height: 1.5;">
+                            Customize the hero planet rendering engine used on the homepage.
+                        </p>
+
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <label style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 12px; border-radius: 12px; cursor: pointer;">
+                                <input type="radio" name="dash_planet_mode" value="3d" onchange="window.setPlanetStyle('3d')" id="dash-radio-planet-3d">
+                                <div>
+                                    <div style="font-weight: 700; font-size: 0.95rem; color: #FFF;">🪐 3D WebGL Flame Planet</div>
+                                    <div style="font-size: 0.78rem; color: var(--text-secondary);">Interactive Three.js 3D globe with mouse tilt & orbital rings</div>
+                                </div>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 12px; border-radius: 12px; cursor: pointer;">
+                                <input type="radio" name="dash_planet_mode" value="legacy" onchange="window.setPlanetStyle('legacy')" id="dash-radio-planet-legacy">
+                                <div>
+                                    <div style="font-weight: 700; font-size: 0.95rem; color: #FFF;">🔥 Legacy 2D CSS Flame Planet</div>
+                                    <div style="font-size: 0.78rem; color: var(--text-secondary);">Classic glowing CSS orb animation</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -249,6 +280,72 @@
             c.appendChild(p);
         }
     })();
+    </script>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" style="display: none; position: fixed; inset: 0; z-index: 999999; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(10px); align-items: center; justify-content: center;">
+        <div style="background: rgba(22, 12, 16, 0.95); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 28px; max-width: 420px; width: 90%; color: #FFF; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.3rem; margin: 0;">⚙️ Website Settings</h3>
+                <button onclick="closeSettingsModal()" style="background: none; border: none; color: #A0A0B0; font-size: 1.2rem; cursor: pointer;">✕</button>
+            </div>
+            
+            <div style="margin-bottom: 24px;">
+                <label style="display: block; font-size: 0.82rem; color: #A0A0B0; margin-bottom: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;">HERO PLANET RENDER MODE</label>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <label style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 12px; border-radius: 12px; cursor: pointer;">
+                        <input type="radio" name="modal_planet_mode" value="3d" onchange="window.setPlanetStyle('3d'); syncRadioState('3d');" id="radio-planet-3d">
+                        <div>
+                            <div style="font-weight: 700; font-size: 0.95rem;">🪐 3D WebGL Flame Planet</div>
+                            <div style="font-size: 0.78rem; color: #A0A0B0;">Interactive Three.js 3D globe with mouse tilt & orbital rings</div>
+                        </div>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 12px; border-radius: 12px; cursor: pointer;">
+                        <input type="radio" name="modal_planet_mode" value="legacy" onchange="window.setPlanetStyle('legacy'); syncRadioState('legacy');" id="radio-planet-legacy">
+                        <div>
+                            <div style="font-weight: 700; font-size: 0.95rem;">🔥 Legacy 2D CSS Flame Planet</div>
+                            <div style="font-size: 0.78rem; color: #A0A0B0;">Classic glowing CSS orb animation</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <button onclick="closeSettingsModal()" style="width: 100%; padding: 12px; background: linear-gradient(135deg, #FF6B00, #FF2A00); color: #FFF; border: none; border-radius: 12px; font-weight: 700; cursor: pointer;">Save & Apply</button>
+        </div>
+    </div>
+
+    <script>
+        function syncRadioState(mode) {
+            const m3d = document.getElementById('radio-planet-3d');
+            const mLegacy = document.getElementById('radio-planet-legacy');
+            const d3d = document.getElementById('dash-radio-planet-3d');
+            const dLegacy = document.getElementById('dash-radio-planet-legacy');
+
+            if (mode === 'legacy') {
+                if (mLegacy) mLegacy.checked = true;
+                if (dLegacy) dLegacy.checked = true;
+            } else {
+                if (m3d) m3d.checked = true;
+                if (d3d) d3d.checked = true;
+            }
+        }
+
+        function openSettingsModal() {
+            const m = document.getElementById('settings-modal');
+            if (m) {
+                m.style.display = 'flex';
+                const cur = localStorage.getItem('cf_planet_style') || '3d';
+                syncRadioState(cur);
+            }
+        }
+        function closeSettingsModal() {
+            const m = document.getElementById('settings-modal');
+            if (m) m.style.display = 'none';
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const cur = localStorage.getItem('cf_planet_style') || '3d';
+            syncRadioState(cur);
+        });
     </script>
 
     <script type="module" src="../dashboard.js"></script>
